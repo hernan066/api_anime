@@ -12,13 +12,19 @@ const UserSchema = Schema(
 		listAnime: [
 			{
 				animeId: { type: String },
-				chapter: { type: Number },
+				cover: { type: String },
+				title: { type: String },
+				rating: { type: String },
+				type: { type: String },
 			},
 		],
 		history: [
 			{
 				animeId: { type: String },
-				chapter: { type: Number },
+				cover: { type: String },
+				title: { type: String },
+				rating: { type: String },
+				chapter: { type: String },
 			},
 		],
 		state: { type: Boolean, default: true },

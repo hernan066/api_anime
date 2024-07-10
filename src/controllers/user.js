@@ -41,6 +41,7 @@ const getUser = async (req, res = response) => {
 		});
 	}
 };
+
 const getAccountUsers = async (req, res = response) => {
 	try {
 		const { id } = req.params;
@@ -95,7 +96,8 @@ const putUser = async (req, res = response) => {
 			...req.body,
 		};
 
-		const account = await User.findByIdAndUpdate(id, data);
+		const account = await User.findByIdAndUpdate(id, data, { new: true });
+		console.log(account);
 
 		return res.status(200).json({
 			ok: true,
@@ -135,6 +137,7 @@ const deleteUser = async (req, res = response) => {
 module.exports = {
 	getUsers,
 	getUser,
+
 	getAccountUsers,
 	postUser,
 	putUser,
