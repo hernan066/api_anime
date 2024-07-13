@@ -25,6 +25,7 @@ const UserSchema = Schema(
 				title: { type: String },
 				rating: { type: String },
 				chapter: { type: String },
+				chapterQuantity: { type: String },
 			},
 		],
 		state: { type: Boolean, default: true },
