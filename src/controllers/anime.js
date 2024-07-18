@@ -296,10 +296,17 @@ const searchDbController = async (req, res) => {
 			console.log(genres);
 			query.genres = { $all: genres };
 		}
+		let result;
 
-		const result = await Anime.find(query)
-			.select('_id animeId title cover rating type')
-			.sort({ title: 1 });
+		if (genre) {
+			result = await Anime.find(query)
+				.select('_id animeId title cover rating type')
+				.sort({ rating: 1 });
+		} else {
+			result = await Anime.find(query)
+				.select('_id animeId title cover rating type')
+				.sort({ title: 1 });
+		}
 
 		return res.status(200).json({
 			ok: true,
