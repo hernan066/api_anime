@@ -16,6 +16,7 @@ const UserSchema = Schema(
 				title: { type: String },
 				rating: { type: String },
 				type: { type: String },
+				chapterQuantity: { type: Number },
 			},
 		],
 		history: [
