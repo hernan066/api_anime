@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  api_anime:
+    container_name: api_anime
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3040:3040'
+    restart: unless-stopped

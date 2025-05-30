@@ -107,27 +107,7 @@ const getPopular = async (req, res) => {
 
 // datos de /watch/:slug
 // info individual de un anime 🆗
-/* const getNewInfo = async (req, res) => {
-	const { slug } = req.params;
 
-	const animes = getAnimeInfoScraping(slug);
-
-	try {
-		return res.status(200).json({
-			ok: true,
-			status: 200,
-			data: animes,
-		});
-	} catch (error) {
-		console.error(error.message);
-
-		return res.status(500).json({
-			ok: false,
-			status: 500,
-			msg: 'No se pudo scrapear el anime solicitado',
-		});
-	}
-}; */
 const getNewInfo = async (req, res) => {
 	const { slug } = req.params;
 
