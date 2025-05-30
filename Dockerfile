@@ -31,3 +31,4 @@ COPY . .
 EXPOSE 3040
 
 CMD ["npm", "start"]
+

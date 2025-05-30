@@ -9,3 +9,4 @@ services:
     ports:
       - '3040:3040'
     restart: unless-stopped
+    
