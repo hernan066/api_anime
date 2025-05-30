@@ -28,8 +28,8 @@ app.use((req, res) => {
 	res.status(404).send('Página no encontrada');
 });
 
-app.listen(process.env.PORT || 3000, () => {
-	console.log(
-		`Servidor escuchando en http://localhost:${process.env.PORT || 3000}`
-	);
+const PORT = process.env.PORT || 3040;
+
+app.listen(PORT, '0.0.0.0', () => {
+	console.log(console.log(`API escuchando en puerto ${PORT}`));
 });
