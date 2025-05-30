@@ -5,7 +5,10 @@ exports.getEpisodeCountScraping = async (slug) => {
 
 	try {
 		// Puppeteer para obtener episodios (renderizados con JS)
-		const browser = await puppeteer.launch({ headless: 'new' });
+		const browser = await puppeteer.launch({
+			headless: true,
+			args: ['--no-sandbox', '--disable-setuid-sandbox'],
+		});
 		const page = await browser.newPage();
 		await page.goto(animeUrl, { waitUntil: 'networkidle2' });
 
