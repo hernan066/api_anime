@@ -17,11 +17,8 @@ app.use('/api/anime', require('./src/routes/animeRoutes'));
 app.use('/api/ninja', require('./src/routes/ninjaRoutes'));
 app.use('/api/user', require('./src/routes/userRoutes'));
 
-app.get('/video-proxy', async (req, res) => {
-	const videoUrl = req.query.url;
-	const response = await fetch(videoUrl);
-	const html = await response.text();
-	res.send(html);
+app.get('/ping', (req, res) => {
+	res.send('pong');
 });
 
 app.use((req, res) => {
