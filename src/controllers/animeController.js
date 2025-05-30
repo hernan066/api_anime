@@ -2,12 +2,12 @@ const {
 	searchAnime,
 	getAnimeInfo,
 	searchAnimesByFilter,
-	getLatest,
+
 	getOnAir,
 	searchAnimesBySpecificURL,
 } = require('animeflv-api');
 const { getChapterVideos } = require('../functions/getChapterVideos');
-const { lastUpdate } = require('../functions/lastUpdate');
+
 const { Anime } = require('../models');
 
 // search
@@ -19,7 +19,7 @@ const searchAnimeController = async (req, res) => {
 		return res.status(200).json({
 			ok: true,
 			status: 200,
-			data: result,
+			...result,
 		});
 	} catch (error) {
 		return res.status(500).json({
@@ -73,6 +73,8 @@ const getAnimeInfoController = async (req, res) => {
 
 	try {
 		const result = await getAnimeInfo(name);
+		console.log(result);
+		console.log(name);
 
 		return res.status(200).json({
 			ok: true,
@@ -108,23 +110,7 @@ const getAnimeVideosController = async (req, res) => {
 };
 
 // all
-const getLatestController = async (req, res) => {
-	try {
-		const result = await getLatest();
 
-		return res.status(200).json({
-			ok: true,
-			status: 200,
-			data: result,
-		});
-	} catch (error) {
-		return res.status(500).json({
-			ok: false,
-			status: 500,
-			msg: 'Ha ocurrido un error',
-		});
-	}
-};
 const getOnAirController = async (req, res) => {
 	try {
 		const result = await getOnAir();
@@ -142,23 +128,7 @@ const getOnAirController = async (req, res) => {
 		});
 	}
 };
-const getLastUpdateController = async (req, res) => {
-	try {
-		const result = await lastUpdate();
 
-		return res.status(200).json({
-			ok: true,
-			status: 200,
-			data: result,
-		});
-	} catch (error) {
-		return res.status(500).json({
-			ok: false,
-			status: 500,
-			msg: 'Ha ocurrido un error',
-		});
-	}
-};
 // guarda listas por Url y Genero
 const saveListAnimeToDB = async (req, res) => {
 	try {
@@ -322,15 +292,17 @@ const searchDbController = async (req, res) => {
 	}
 };
 
+// nuevo controlador para obtener la info de un anime
+
 module.exports = {
 	searchAnimeController,
 	getAnimeInfoController,
 	searchAnimesByFilterController,
 	searchAnimesBySpecificURLController,
-	getLatestController,
+
 	getOnAirController,
 	getAnimeVideosController,
-	getLastUpdateController,
+
 	saveListAnimeToDB,
 	saveListAnimeToDBPage,
 	saveGenresAndEpisodes,

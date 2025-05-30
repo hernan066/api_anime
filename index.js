@@ -20,10 +20,16 @@ const connection = async () => {
 connection();
 
 // -------------routes-----------
-app.use('/api/anime', require('./src/routes/anime'));
-app.use('/api/account', require('./src/routes/account'));
-app.use('/api/user', require('./src/routes/user'));
-app.use('/api/auth', require('./src/routes/auth'));
+app.use('/api/anime', require('./src/routes/animeRoutes'));
+app.use('/api/ninja', require('./src/routes/ninjaRoutes'));
+app.use('/api/user', require('./src/routes/userRoutes'));
+
+app.get('/video-proxy', async (req, res) => {
+	const videoUrl = req.query.url;
+	const response = await fetch(videoUrl);
+	const html = await response.text();
+	res.send(html);
+});
 
 // Ruta para manejar errores 404
 app.use((req, res) => {

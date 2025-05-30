@@ -1,42 +1,19 @@
 const { Schema, model } = require('mongoose');
 
-const UserSchema = Schema(
+const userSchema = Schema(
 	{
-		account: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
-		name: { type: String },
-		avatar: {
-			type: String,
-			default:
-				'https://ik.imagekit.io/mrprwema7/user_default_nUfUA9Fxa.png?ik-sdk-version=javascript-1.4.3&updatedAt=1668611498443',
-		},
-		listAnime: [
-			{
-				animeId: { type: String },
-				cover: { type: String },
-				title: { type: String },
-				rating: { type: String },
-				type: { type: String },
-				chapterQuantity: { type: Number },
-			},
-		],
-		history: [
-			{
-				animeId: { type: String },
-				cover: { type: String },
-				title: { type: String },
-				rating: { type: String },
-				chapter: { type: String },
-				chapterQuantity: { type: String },
-			},
-		],
+		auth0Id: { type: String, required: true, unique: true },
+		email: { type: String, required: true },
+		name: String,
+		role: { type: String, default: 'user', enum: ['user', 'admin'] },
 		state: { type: Boolean, default: true },
 	},
 	{ timestamps: true }
 );
 
-UserSchema.methods.toJSON = function () {
-	const { __v, password, ...user } = this.toObject();
-	return user;
+userSchema.methods.toJSON = function () {
+	const { __v, ...account } = this.toObject();
+	return account;
 };
 
-module.exports = model('User', UserSchema);
+module.exports = model('User', userSchema);

@@ -12,8 +12,7 @@ const CloudscraperOptions = {
 	uri: '',
 };
 
-async function lastUpdate() {
-	console.log('ejecutado 2');
+exports.lastUpdateScraping = async () => {
 	try {
 		CloudscraperOptions.uri = 'https://www3.animeflv.net/';
 
@@ -43,8 +42,4 @@ async function lastUpdate() {
 		console.error(error);
 		return [];
 	}
-}
-
-module.exports = {
-	lastUpdate,
 };
